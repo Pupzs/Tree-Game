@@ -1,9 +1,11 @@
+// script.js
 // Initialize variables
 let trees = 0;
 let treeIncrement = 1;
 let treeIncrementIncrease = 1;
 let treeIncrementCost = 5;
 let doubleTreeIncrementCost = 100;
+let prestigePoints = 0;
 
 // Get DOM elements
 const treesDisplay = document.getElementById('trees-display');
@@ -15,6 +17,8 @@ const plantButton = document.getElementById('plant-button');
 const increaseButton = document.getElementById('increase-button');
 const doubleIncreaseButton = document.getElementById('doubleIncrease-button');
 const resetButton = document.getElementById('reset-button');
+const prestigeButton = document.getElementById('prestige-button');
+const prestigeDisplay = document.getElementById('prestige-display');
 
 // Update display functions
 function updateTreesDisplay() {
@@ -35,6 +39,10 @@ function updateTreeIncrementCostDisplay() {
 
 function updateDoubleTreeIncrementCostDisplay() {
     doubleTreeIncrementCostDisplay.textContent = doubleTreeIncrementCost;
+}
+
+function updatePrestigePoints() {
+    prestigeDisplay.textContent = prestigePoints;
 }
 
 // Progress bar function
@@ -136,11 +144,31 @@ function resetGame() {
     }, 100); // Delay for 100 milliseconds
 }
 
+function prestige() {
+    if (trees >= 10000){
+        let earnedPoints = Math.floor(trees / 10000); // Example calculation
+        prestigePoints += earnedPoints;
+        trees = 0; // Reset trees
+        updatePrestigePoints();
+        alert(`You have earned ${earnedPoints} prestige points!`);
+        updateProgressBar(); // Update the progress bar
+        // Add a visual effect (e.g., change button color)
+        prestigeButton.style.backgroundColor = "#80c080"; // Green
+        setTimeout(() => {
+            prestigeButton.style.backgroundColor = "#4CAF50"; // Original color
+        }, 100); // Delay for 100 milliseconds
+    }
+    else {
+        alert(`You do not have at least 10,000 trees`);
+    }
+}
+
 // Event listeners
 plantButton.addEventListener('click', plantTrees);
 increaseButton.addEventListener('click', increaseTreeIncrement);
 doubleIncreaseButton.addEventListener('click', doubleTreeIncrementIncrease);
 resetButton.addEventListener('click', resetGame);
+prestigeButton.addEventListener('click', prestige);
 
 // Initial display updates
 updateTreesDisplay();
@@ -148,4 +176,5 @@ updateTreeIncrementDisplay();
 updateTreeIncrementIncreaseDisplay();
 updateTreeIncrementCostDisplay();
 updateDoubleTreeIncrementCostDisplay();
-updateProgressBar(); // Initialize the progress bar
+updatePrestigePoints();
+updateProgressBar(); // Initialize the progress bar 

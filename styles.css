@@ -1,3 +1,4 @@
+/* styles.css */
 /* Add your CSS styles here */
 body {
     font-family: sans-serif;
@@ -11,16 +12,16 @@ body {
 }
 
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reduced margin for better spacing */
 }
 
 .progress-container {
-    width: 10%;
+    width: 30%;
     background-color: #f3f3f3;
-    margin-top: 20px;
     height: 20px;
     border-radius: 5px;
-    position:relative
+    position: relative; /* Ensure the label is positioned correctly */
+    margin-top: 5px; /* Added a small top margin for visual separation */
 }
 
 .progress-bar {
@@ -39,9 +40,11 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-.progress-container .label{
-    position:absolute;
-    width:100%;
-    top:2px;
-    text-align:center;
+
+.progress-container .label {
+    position: absolute;
+    width: 100%;
+    top: 2px; /* Adjusted top position for better label alignment */
+    text-align: center;
+    font-size: 12px; /* Added font size for better readability */
 }
