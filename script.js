@@ -6,8 +6,10 @@ let treeIncrementIncrease = 1;
 let treeIncrementCost = 5;
 let doubleTreeIncrementCost = 100;
 let prestigePoints = 0;
-let potentialprestigePoints = 0
+let potentialprestigePoints = 0;
 let treesNeeded = 10000;
+let potentialprestigePointsUp = 0;
+let potentialprestigePointsDown = 0;
 
 // Get DOM elements
 const treesDisplay = document.getElementById('trees-display');
@@ -157,33 +159,47 @@ function resetGame() {
 
 function potential_prestige() {
     //prestige calculation
-    if (trees/treesNeeded>=1) {
-        while (trees/treesNeeded>=1) {
-            let potentialEarnedPoints = Math.floor(potentialprestigePoints + trees / treesNeeded);
-            potentialprestigePoints = potentialEarnedPoints;
-            updatePrestigePoints();
-            treesNeeded *= 2;
+    if (potentialprestigePointsUp == 0) {
+        //potentialprestigePointsUp = 1;
+        if (trees/treesNeeded>=1) {
+            potentialprestigePointsUp = 1;
+            while (trees/treesNeeded>=1) {
+                let potentialEarnedPoints = Math.floor(potentialprestigePoints + trees / treesNeeded);
+                potentialprestigePoints = potentialEarnedPoints;
+                updatePrestigePoints();
+                treesNeeded *= 2;
+                if (trees/treesNeeded<1) {
+                    potentialprestigePointsUp = 0;
+                    break;
+                }
+            }
         }
     }
 
     let treesNeededCheck = treesNeeded/2
-
-    if (potentialprestigePoints >= 1) {
-        if (treesNeededCheck/trees>1) {
-            while (treesNeededCheck/trees>1) {
-                potentialprestigePoints -= 1;
-                updatePrestigePoints();
-                treesNeeded /= 2;
-                treesNeededCheck=treesNeeded/2
-                if (potentialprestigePoints == 0) {
-                    break;
+    if (potentialprestigePointsDown == 0) {
+        //potentialprestigePointsDown = 1;
+        if (potentialprestigePoints >= 1) {
+            if (treesNeededCheck/trees>1) {
+                potentialprestigePointsDown = 1;
+                while (treesNeededCheck/trees>1) {
+                    potentialprestigePoints -= 1;
+                    updatePrestigePoints();
+                    treesNeeded /= 2;
+                    treesNeededCheck=treesNeeded/2
+                    if (potentialprestigePoints == 0) {
+                        potentialprestigePointsDown = 0;
+                        break;
+                    }
+                    if (treesNeededCheck/trees<=1) {
+                        potentialprestigePointsDown = 0;
+                        break;
+                    }
                 }
-    }
-   
-        } 
+            } 
+        }
     }
 }
-
 function prestige() {
     if (potentialprestigePoints >= 1){
         let earnedPoints = potentialprestigePoints 
