@@ -6,6 +6,8 @@ let treeIncrementIncrease = 1;
 let treeIncrementCost = 5;
 let doubleTreeIncrementCost = 100;
 let prestigePoints = 0;
+let potentialprestigePoints = 0
+let treesNeeded = 10000;
 
 // Get DOM elements
 const treesDisplay = document.getElementById('trees-display');
@@ -13,12 +15,14 @@ const treeIncrementDisplay = document.getElementById('treeIncrement-display');
 const treeIncrementIncreaseDisplay = document.getElementById('treeIncrementIncrease-display');
 const treeIncrementCostDisplay = document.getElementById('treeIncrementCost-display');
 const doubleTreeIncrementCostDisplay = document.getElementById('doubleTreeIncrementCost-display');
+const prestigeDisplay = document.getElementById('prestige-display');
 const plantButton = document.getElementById('plant-button');
 const increaseButton = document.getElementById('increase-button');
 const doubleIncreaseButton = document.getElementById('doubleIncrease-button');
 const resetButton = document.getElementById('reset-button');
 const prestigeButton = document.getElementById('prestige-button');
-const prestigeDisplay = document.getElementById('prestige-display');
+const x10iButton = document.getElementById('x10i');
+
 
 // Update display functions
 function updateTreesDisplay() {
@@ -42,7 +46,7 @@ function updateDoubleTreeIncrementCostDisplay() {
 }
 
 function updatePrestigePoints() {
-    prestigeDisplay.textContent = prestigePoints;
+    prestigeDisplay.textContent = prestigePoints + " (" + potentialprestigePoints + ")";
 }
 
 // Progress bar function
@@ -77,6 +81,7 @@ function updateProgressBar() {
 function plantTrees() {
     trees += treeIncrement;
     updateTreesDisplay();
+    potential_prestige();
     updateProgressBar(); // Update the progress bar after planting trees
 	// Add a visual effect (e.g., change button color)
     plantButton.style.backgroundColor = "#80c080"; // Green
@@ -93,6 +98,7 @@ function increaseTreeIncrement() {
         updateTreesDisplay();
         updateTreeIncrementDisplay();
         updateTreeIncrementCostDisplay();
+        potential_prestige();
         updateProgressBar(); // Update the progress bar
 		// Add a visual effect (e.g., change button color)
     	increaseButton.style.backgroundColor = "#80c080"; // Green
@@ -114,6 +120,7 @@ function doubleTreeIncrementIncrease() {
         updateTreeIncrementDisplay();
         updateTreeIncrementIncreaseDisplay();
         updateDoubleTreeIncrementCostDisplay();
+        potential_prestige();
         updateProgressBar(); // Update the progress bar
 		// Add a visual effect (e.g., change button color)
     	doubleIncreaseButton.style.backgroundColor = "#80c080"; // Green
@@ -131,11 +138,15 @@ function resetGame() {
     treeIncrementIncrease = 1;
     treeIncrementCost = 5;
     doubleTreeIncrementCost = 100;
+    potentialprestigePoints = 0;
+    prestigePoints = 0;
+    treesNeeded = 10000;
     updateTreesDisplay();
     updateTreeIncrementDisplay();
     updateTreeIncrementIncreaseDisplay();
     updateTreeIncrementCostDisplay();
     updateDoubleTreeIncrementCostDisplay();
+    updatePrestigePoints();
     updateProgressBar(); // Reset the progress bar
 	// Add a visual effect (e.g., change button color)
     resetButton.style.backgroundColor = "#80c080"; // Green
@@ -144,12 +155,39 @@ function resetGame() {
     }, 100); // Delay for 100 milliseconds
 }
 
+function potential_prestige() {
+    if (trees/treesNeeded>=1) {
+        while (trees/treesNeeded>=1) {
+            let potentialEarnedPoints = Math.floor(potentialprestigePoints + trees / treesNeeded);
+            potentialprestigePoints = potentialEarnedPoints;
+            updatePrestigePoints();
+            treesNeeded *= 2;
+        }
+    }
+    let treesNeededCheck = treesNeeded/2
+    if (potentialprestigePoints >= 1) {
+        if (treesNeededCheck/trees>1) {
+            while (treesNeededCheck/trees>1) {
+                potentialprestigePoints -= 1;
+                updatePrestigePoints();
+                treesNeeded /= 2;
+                treesNeededCheck=treesNeeded/2
+                if (potentialprestigePoints == 0) {
+                    break;
+                }
+    }
+   
+        } 
+    }
+}
+
 function prestige() {
     if (trees >= 10000){
         let earnedPoints = Math.floor(trees / 10000); // Example calculation
         prestigePoints += earnedPoints;
         trees = 0; // Reset trees
         updatePrestigePoints();
+        updateTreesDisplay();
         alert(`You have earned ${earnedPoints} prestige points!`);
         updateProgressBar(); // Update the progress bar
         // Add a visual effect (e.g., change button color)
@@ -163,12 +201,19 @@ function prestige() {
     }
 }
 
+function x10i() {
+    trees = trees*10;
+    updateTreesDisplay();
+    potential_prestige();
+}
+
 // Event listeners
 plantButton.addEventListener('click', plantTrees);
 increaseButton.addEventListener('click', increaseTreeIncrement);
 doubleIncreaseButton.addEventListener('click', doubleTreeIncrementIncrease);
 resetButton.addEventListener('click', resetGame);
 prestigeButton.addEventListener('click', prestige);
+x10iButton.addEventListener('click', x10i)
 
 // Initial display updates
 updateTreesDisplay();
