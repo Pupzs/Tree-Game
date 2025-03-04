@@ -156,6 +156,7 @@ function resetGame() {
 }
 
 function potential_prestige() {
+    //prestige calculation
     if (trees/treesNeeded>=1) {
         while (trees/treesNeeded>=1) {
             let potentialEarnedPoints = Math.floor(potentialprestigePoints + trees / treesNeeded);
@@ -164,7 +165,9 @@ function potential_prestige() {
             treesNeeded *= 2;
         }
     }
+
     let treesNeededCheck = treesNeeded/2
+
     if (potentialprestigePoints >= 1) {
         if (treesNeededCheck/trees>1) {
             while (treesNeededCheck/trees>1) {
@@ -182,10 +185,12 @@ function potential_prestige() {
 }
 
 function prestige() {
-    if (trees >= 10000){
-        let earnedPoints = Math.floor(trees / 10000); // Example calculation
+    if (potentialprestigePoints >= 1){
+        let earnedPoints = potentialprestigePoints 
         prestigePoints += earnedPoints;
         trees = 0; // Reset trees
+        potentialprestigePoints = 0; // Reset Potential Prestige Points
+        treesNeeded = 10000; // Reset Trees Needed for New Prestige Points
         updatePrestigePoints();
         updateTreesDisplay();
         alert(`You have earned ${earnedPoints} prestige points!`);
