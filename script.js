@@ -10,6 +10,9 @@ let potentialprestigePoints = 0;
 let treesNeeded = 10000;
 let potentialprestigePointsUp = 0;
 let potentialprestigePointsDown = 0;
+let prestigePointsTimes = 1
+let prestigePointsTimes2 = 1
+let prestigePointsTimesTotal = 1
 
 // Get DOM elements
 const treesDisplay = document.getElementById('trees-display');
@@ -28,11 +31,11 @@ const x10iButton = document.getElementById('x10i');
 
 // Update display functions
 function updateTreesDisplay() {
-    treesDisplay.textContent = trees;
+    treesDisplay.textContent = Math.floor(trees);
 }
 
 function updateTreeIncrementDisplay() {
-    treeIncrementDisplay.textContent = treeIncrement;
+    treeIncrementDisplay.textContent = treeIncrement+" (x"+Math.round(prestigePointsTimesTotal*100)/100+")";
 }
 
 function updateTreeIncrementIncreaseDisplay() {
@@ -81,7 +84,7 @@ function updateProgressBar() {
 
 // Game logic functions
 function plantTrees() {
-    trees += treeIncrement;
+    trees += treeIncrement*prestigePointsTimes*prestigePointsTimes2;
     updateTreesDisplay();
     potential_prestige();
     updateProgressBar(); // Update the progress bar after planting trees
@@ -204,11 +207,15 @@ function prestige() {
     if (potentialprestigePoints >= 1){
         let earnedPoints = potentialprestigePoints 
         prestigePoints += earnedPoints;
+        prestigePointsTimes = prestigePoints*0.1+1;
+        prestigePointsTimes2 = prestigePoints*0.01+1;
+        prestigePointsTimesTotal = Math.round(prestigePointsTimes*10)/10*Math.round(prestigePointsTimes2*100)/100
         trees = 0; // Reset trees
         potentialprestigePoints = 0; // Reset Potential Prestige Points
         treesNeeded = 10000; // Reset Trees Needed for New Prestige Points
         updatePrestigePoints();
         updateTreesDisplay();
+        updateTreeIncrementDisplay();
         alert(`You have earned ${earnedPoints} prestige points!`);
         updateProgressBar(); // Update the progress bar
         // Add a visual effect (e.g., change button color)
