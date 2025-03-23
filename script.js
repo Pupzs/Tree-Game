@@ -212,6 +212,10 @@ function prestige() {
         prestigePointsTimesTotal = Math.round(prestigePointsTimes*10)/10*Math.round(prestigePointsTimes2*100)/100
         trees = 0; // Reset trees
         potentialprestigePoints = 0; // Reset Potential Prestige Points
+        treeIncrement = 1;
+        treeIncrementIncrease = 1;
+        treeIncrementCost = 5;
+        doubleTreeIncrementCost = 100;
         treesNeeded = 10000; // Reset Trees Needed for New Prestige Points
         updatePrestigePoints();
         updateTreesDisplay();
