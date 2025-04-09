@@ -61,11 +61,11 @@ button {
     align-items: center;
     justify-content: center;
 
-    border-radius: 30px; /* Rounded corners */
+    border-radius: 30px;
 
     --fade-size: 15%;
 
-    /* Full fade on all sides and corners */
+    /* Full fade on all edges and corners */
     -webkit-mask-image: 
         radial-gradient(circle at top left,     transparent 0%, black var(--fade-size)),
         radial-gradient(circle at top right,    transparent 0%, black var(--fade-size)),
@@ -75,14 +75,23 @@ button {
         linear-gradient(to bottom, transparent 0%, black var(--fade-size), black 100%),
         linear-gradient(to left,   transparent 0%, black var(--fade-size), black 100%),
         linear-gradient(to right,  transparent 0%, black var(--fade-size), black 100%);
+    mask-image: 
+        radial-gradient(circle at top left,     transparent 0%, black var(--fade-size)),
+        radial-gradient(circle at top right,    transparent 0%, black var(--fade-size)),
+        radial-gradient(circle at bottom left,  transparent 0%, black var(--fade-size)),
+        radial-gradient(circle at bottom right, transparent 0%, black var(--fade-size)),
+        linear-gradient(to top,    transparent 0%, black var(--fade-size), black 100%),
+        linear-gradient(to bottom, transparent 0%, black var(--fade-size), black 100%),
+        linear-gradient(to left,   transparent 0%, black var(--fade-size), black 100%),
+        linear-gradient(to right,  transparent 0%, black var(--fade-size), black 100%);
+
     -webkit-mask-composite: destination-in;
     mask-composite: intersect;
+
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
+
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
-
-    /* Ensure mask follows the rounded shape */
-    -webkit-mask-border-radius: 30px;
-    mask-border-radius: 30px;
 }
+
