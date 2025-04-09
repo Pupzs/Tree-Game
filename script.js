@@ -89,9 +89,9 @@ function plantTrees() {
     potential_prestige();
     updateProgressBar(); // Update the progress bar after planting trees
 	// Add a visual effect (e.g., change button color)
-    plantButton.style.backgroundColor = "#80c080"; // Green
+    plantButton.style.backgroundColor = "#ADD8E6"; // Green
     setTimeout(() => {
-        plantButton.style.backgroundColor = "#4CAF50"; // Original color
+        plantButton.style.backgroundColor = "#3c91ae"; // Original color
     }, 100); // Delay for 100 milliseconds
 }
 
@@ -106,9 +106,9 @@ function increaseTreeIncrement() {
         potential_prestige();
         updateProgressBar(); // Update the progress bar
 		// Add a visual effect (e.g., change button color)
-    	increaseButton.style.backgroundColor = "#80c080"; // Green
+    	increaseButton.style.backgroundColor = "#ADD8E6"; // Green
     	setTimeout(() => {
-        	increaseButton.style.backgroundColor = "#4CAF50"; // Original color
+        	increaseButton.style.backgroundColor = "#3c91ae"; // Original color
     	}, 100); // Delay for 100 milliseconds
     } else {
         alert("Not enough trees to increase tree increment!");
@@ -128,9 +128,9 @@ function doubleTreeIncrementIncrease() {
         potential_prestige();
         updateProgressBar(); // Update the progress bar
 		// Add a visual effect (e.g., change button color)
-    	doubleIncreaseButton.style.backgroundColor = "#80c080"; // Green
+    	doubleIncreaseButton.style.backgroundColor = "#ADD8E6"; // Green
     	setTimeout(() => {
-        	doubleIncreaseButton.style.backgroundColor = "#4CAF50"; // Original color
+        	doubleIncreaseButton.style.backgroundColor = "#3c91ae"; // Original color
     	}, 100); // Delay for 100 milliseconds
     } else {
         alert("Not enough trees to double tree increment increase!");
@@ -154,9 +154,9 @@ function resetGame() {
     updatePrestigePoints();
     updateProgressBar(); // Reset the progress bar
 	// Add a visual effect (e.g., change button color)
-    resetButton.style.backgroundColor = "#80c080"; // Green
+    resetButton.style.backgroundColor = "#ADD8E6"; // Green
     setTimeout(() => {
-        resetButton.style.backgroundColor = "#4CAF50"; // Original color
+        resetButton.style.backgroundColor = "#3c91ae"; // Original color
     }, 100); // Delay for 100 milliseconds
 }
 
@@ -223,9 +223,9 @@ function prestige() {
         alert(`You have earned ${earnedPoints} prestige points!`);
         updateProgressBar(); // Update the progress bar
         // Add a visual effect (e.g., change button color)
-        prestigeButton.style.backgroundColor = "#80c080"; // Green
+        prestigeButton.style.backgroundColor = "#ADD8E6"; //Blue  . #80c080 Green
         setTimeout(() => {
-            prestigeButton.style.backgroundColor = "#4CAF50"; // Original color
+            prestigeButton.style.backgroundColor = "#3c91ae"; // Original color #4CAF50
         }, 100); // Delay for 100 milliseconds
     }
     else {
