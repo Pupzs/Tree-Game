@@ -49,7 +49,7 @@
     <button id="doubleIncrease-button">Double Tree Increment Increase</button>
     <button id="prestige-button">Prestige</button>
     <button id="reset-button">Hard Reset</button>
-    <button id="x10i">x10</button>
+    <!-- <button id="x10i">x10</button> -->
     </div>
     <script src="script.js"></script>
 </body>
